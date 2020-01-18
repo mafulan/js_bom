@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 400px;
+            height: 400px;
+            background-color: white;
+            margin: 50px auto;
+        }
+        input{
+            width: 200px;
+            height: 20px;
+        }
+        li{
+            height: 20px;
+            width: 300px;
+            margin: 5px;
+            
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input type="text">
+        <button>发送</button><button>批量删除</button>
+        <ul>
+            
+        </ul>
+
+    </div>
+    <script>
+        var oDiv = document.querySelector("div");
+        var oTe = document.querySelector("input");
+        var aBtn = document.querySelectorAll("button");
+        var oUl = document.querySelector("ul");
+        var len=0;
+        
+        aBtn[0].onclick = function(){
+             var oLi = document.createElement("li");
+             oLi.innerHTML = oTe.value;
+             len++;
+             oUl.children[0] ? oUl.insertBefore(oLi,oUl.children[0]) : oUl.appendChild(oLi);
+             if(len>5){
+                 oUl.lastChild.remove();
+             }
+            
+            oLi.onclick = function(){
+                oLi.style.backgroundColor = "yellow";
+                oLi.classList.toggle("del");
+       }
+       var aLi = document.getElementsByClassName("del");
+        aBtn[1].onclick  = function(){ 
+            for(var j=aLi.length-1;j>=0;j--){
+                oUl.removeChild(aLi[j]);
+           }
+           len = document.querySelectorAll("li").length;
+           
+       }
+        }
+        
+       
+     
+    </script>
+</body>
+</html>
